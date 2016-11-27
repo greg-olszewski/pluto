@@ -13,6 +13,16 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+# Check if wget is available
+if [ ! -e '/usr/bin/wget' ]; then
+    apt-get -y install wget
+    if [ $? -eq 0 ]; then
+        echo "Installed wget"
+    else
+        echo "[ERROR] Error installing wget"
+    fi
+fi
+
 distro=head -n 1 /etc/issue | cut -f 1 -d ' ';
 
 # OS detection
