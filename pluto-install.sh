@@ -46,6 +46,6 @@ fi
 
 tar xvzf pluto-install-$type.tar.gz
 
-cd pluto-install-$type && exec /bin/bash install-$typr.sh
+cd pluto-install-$type && exec /bin/bash install-$type.sh
 
 exit
