@@ -34,6 +34,12 @@ else
     echo "[ERROR] apt-get install failed"
 fi
 
+mkdir /var/pluto
+mkdir /etc/pluto
+
+cp config/Caddyfile /etc/pluto/Caddyfile
+cp -R panel /var/pluto/panel
+
 #mysqld --initialize-insecure
 
 #mysql helpers to be used later on
@@ -98,6 +104,9 @@ mysql-create-user admin $genpass
 mysql-create-db pluto
 mysql-grant-db admin pluto
 
+daemon --name="caddy" --output=/var/log/caddy.log --config /etc/pluto/Caddyfile
+sudo update-rc.d caddy remove
+sudo update-rc.d caddy defaults
 
 #print success message
 echo "DONE"

@@ -34,14 +34,18 @@ esac
 
 # Download
 if [ -e '/usr/bin/wget' ]; then
-    wget http://plutocp.xyz/install/plto-install-$type.sh -O pluto-install-$type.sh
+    wget http://plutocp.xyz/install/plto-install-$type.tar.gz -O pluto-install-$type.sh
     if [ "$?" -eq '0' ]; then #if exit code equal to 0, execute
         bash vst-install-$type.sh $*
         exit
     else
-        echo "[Error] pluto-install-$type.sh download failure"
+        echo "[Error] pluto-install-$type.tar.gz download failure"
         exit 1
     fi
 fi
+
+tar xvzf pluto-install-$type.tar.gz
+
+cd pluto-install-$type && exec /bin/bash install-$typr.sh
 
 exit

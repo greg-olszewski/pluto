@@ -1,0 +1,10 @@
+localhost:7777 {
+    gzip
+    root /var/pluto/panel
+    log /var/log/caddy/localhost_access.log
+}
+localhost:7777/phpmyadmin {
+    gzip
+    root /usr/share/phpmyadmin/
+    log /var/log/caddy/phpmyadmin_access.log
+}
